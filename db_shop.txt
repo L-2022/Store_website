@@ -1,0 +1,37 @@
+CREATE TABLE users (
+	id serial PRIMARY KEY,
+	email VARCHAR ( 50 ) NOT NULL,
+	psw VARCHAR ( 255 ) NOT NULL,
+	first_name VARCHAR ( 300 ) NOT NULL,
+	last_name VARCHAR ( 300 ) NOT NULL,
+	old INTEGER,
+	phone INTEGER,
+	avatar VARCHAR ( 500 ),
+	tm_reg VARCHAR ( 300 ),
+	tm_dell VARCHAR ( 300 )
+);
+
+CREATE TABLE product (
+	id serial PRIMARY KEY,
+	product_name VARCHAR ( 200 ) NOT NULL,
+	characteristic VARCHAR ( 1400 ) NOT NULL,
+	categories VARCHAR ( 50 ) NOT NULL,
+	cost INTEGER
+);
+
+CREATE TABLE quest_resp (
+	id serial PRIMARY KEY,
+	product_id INTEGER,
+	user_id INTEGER,
+	rating INTEGER,
+	question text,
+	respons text
+
+);
+
+CREATE TABLE product_categories (
+	id serial PRIMARY KEY,
+	categories_product VARCHAR ( 50 ) NOT NULL,
+	description_product text
+);
+

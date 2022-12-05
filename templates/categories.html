@@ -1,0 +1,27 @@
+{% extends 'base_shop.html' %}
+
+{% block content %}
+
+<h1 style="color: rgba(190,50,172,0.93)">Product</h1>
+{% for p in contentCategories %}
+    {% if loop.index % 2 == 0 %}
+        {% set bg_color = '#e6f9df' %}
+    {% else %}
+        {% set bg_color = '#b3e7ee' %}
+    {% endif %}
+
+    <div  style="padding: 1px; margin: 5px 5px 0 5px;
+    height: 30%; font-size: 20px;
+    background-color:{{ bg_color }}; ">
+        <p class="title">
+            <a href="{{ url_for('showPost', alias=p.1)}}">{{p.1}}</a>
+
+        </p>
+            <p class="annonce">{{ p.2[:50] | striptags }}</p>
+            <p class="annonce">{{ p.3 }}
+        </p>
+
+    </div>
+{% endfor %}
+
+{% endblock %}

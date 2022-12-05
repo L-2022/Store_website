@@ -1,0 +1,32 @@
+{% extends 'base_shop.html' %}
+
+{% block content %}
+<div class="center_main">
+<h1 style="color: rgba(190,50,172,0.93)">Product</h1>
+{% for p in posts %}
+    {% if loop.index % 2 == 0 %}
+        {% set bg_color = '#e6f9df' %}
+    {% else %}
+        {% set bg_color = '#b3e7ee' %}
+    {% endif %}
+
+    <div  style="padding: 1px; margin: 5px 5px 0 5px;
+    height: 30%; font-size: 20px;
+    background-color:{{ bg_color }}; ">
+        <p class="right_text" >#{{ loop.index }}</p>
+        <p class="title">
+            <a href="{{ url_for('showPost', alias=p.1)}}">{{p.1}}</a>
+        </p>
+            <p class="annonce">{{ p.2[:50] | striptags }}</p>
+            <p class="right_text">{{ p.3 | striptags }} ₴
+                {% if current_user.is_authenticated %}
+                    <a class='btn btn-success' href="{{ url_for('buy') }}">Buy</a></p>
+                {% else %}
+                    <a class='btn btn-success' href="{{ url_for('login') }}">Buy</a>
+                {% endif %}
+
+
+    </div>
+        {% endfor %}
+</div>
+{% endblock %}

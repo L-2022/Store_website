@@ -1,0 +1,37 @@
+{% extends 'base_shop.html' %}
+
+{% block content %}
+{{ super() }}
+<div class="flash {{cat}}">{{msg}}</div>
+{% for cat, msg in get_flashed_messages(True) %}
+
+{% endfor %}
+<div class="center">
+    <form action="" method="post" class="form-contact">
+    {{ form.hidden_tag() }}
+    <p>Login</p>
+
+    {% for field in form if field.name not in ['csrf_token', 'remember', 'submit'] -%} <!--те що неможна брати['csrf_token', 'remember', 'submit']-->
+        <div class="right_text">
+        <p class="right_text">{{ field.label() }}
+        {% if field.errors %}
+            {{ field(class="invalid") }}
+        <span class="invalid-feedback">
+            {% for e in field.errors %}
+            {{ e }}
+            {% endfor %}
+        </span>
+        {% else %}
+            {{ field() }}
+        {% endif %}
+    {% endfor %}
+        </p>
+    <p >{{ form.remember.label() }} {{ form.remember() }}</p>
+    </div>
+    <p>{{ form.submit() }}</p>
+
+    <hr align=left width="300px">
+    <p  ><a style="background: #d7fee4;" href="{{url_for('register')}}">Registration</a></p>
+    </form>
+</div>
+{% endblock %}

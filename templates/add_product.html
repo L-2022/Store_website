@@ -1,0 +1,27 @@
+{% extends 'base_shop.html' %}
+
+{{ super() }}
+{% block content %}
+    <div class="center">
+    <p>Add product</p>
+    <hr align=left width="300px">
+	<form action="" method="post" class="form-contact">
+		{{ form.hidden_tag() }}
+		{% for field in form if field.name not in ['csrf_token', 'submit'] -%}
+			<p>{{ field.label() }}
+			{% if field.errors %}
+				{{ field(class="invalid") }}
+			<span class="invalid-feedback">
+				{% for e in field.errors %}
+				{{ e }}
+				{% endfor %}
+			</span>
+			{% else %}
+				{{ field() }}
+			{% endif %}
+		{% endfor %}
+		<p style=" text-align: right">{{ form.submit() }}
+
+	</form>
+    </div>
+{% endblock %}

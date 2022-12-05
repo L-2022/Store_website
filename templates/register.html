@@ -1,0 +1,29 @@
+ {% extends 'base_shop.html' %}
+
+{% block content %}
+{{ super() }}
+<div class="center">
+    <form action="{{ url_for('register') }}" method="post">
+    {{ form.hidden_tag() }}
+    <p>Register</p>
+
+    {% for field in form if field.name not in ['csrf_token', 'submit'] -%}
+        <div class="right_text">
+        <p>{{ field.label() }}
+        {% if field.errors %}<br>
+            {{ field(class="invalid") }}
+        <span class="invalid-feedback">
+            {% for e in field.errors %}
+            {{ e }}
+            {% endfor %}
+        </span>
+        {% else %}
+            {{ field() }}
+        {% endif %}
+    {% endfor %}
+    <p>
+        {{ form.submit() }}</p>
+        </div>
+    </form>
+</div>
+{% endblock %}

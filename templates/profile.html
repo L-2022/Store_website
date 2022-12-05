@@ -1,0 +1,32 @@
+ {% extends 'base_shop.html' %}
+
+{% block content %}
+{{ super() }}
+
+
+<div class="center"  style="width: 60%;">
+    <p>Profile:</p>
+    <table>
+        <tr><td>
+            <div class="profile-ava"><img src="{{ url_for('userava') }}"></div>
+            <div class="profile-load">
+            <form action="{{url_for('upload')}}" method="POST" enctype="multipart/form-data">
+                <p><input type="file" name="file">
+                <p><input type="submit" value="Загрузить">
+            </form>
+            </div>
+            </td>
+
+                <ul >
+                    <li>Name: {{ current_user.getName() }}</li>
+                    <li>Email: {{ current_user.getEmail() }}</li>
+                    <li>old: {{ current_user.getOld() }} year.</li>
+                </ul>
+            </td>
+
+
+
+        </tr>
+    </table>
+</div>
+{% endblock %}

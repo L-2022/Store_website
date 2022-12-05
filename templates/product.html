@@ -1,0 +1,17 @@
+{% extends 'base_shop.html' %}
+
+{% block content %}
+<div>
+    {{ super() }}
+
+    <div style="color: #2b9fb8">
+        <h1 style="color: rgba(190,50,172,0.93)">
+            {{ characteristic | safe }}
+        </h1>
+    </div>
+    <h6 style="color: rgba(144,136,136,0.93)">Description product:</h6>
+     <h3 style="color: rgba(14,11,11,0.93)">{{ cost | safe }}</h3>
+
+    <h3 style="color: #2bb842">Cost: {{ title | safe }} ₴ <a class='btn btn-success' href="{{ url_for('buy') }}">Buy</a></p></h3>
+</div>
+{% endblock %}
